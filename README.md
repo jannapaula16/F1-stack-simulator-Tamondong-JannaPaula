@@ -1,1 +1,0 @@
-# F1-stack-simulator-Tamondong-JannaPaula
