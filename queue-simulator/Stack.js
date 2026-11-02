@@ -1,20 +1,20 @@
 "use strict";
 
-class Stack {
+class Queue {
     constructor() {
         this.items = [];
     }
 
-    push(value) {
+    enqueue(value) {
         this.items.push(value);
     }
 
-    pop() {
-        return this.items.pop();
+    dequeue() {
+        return this.items.shift();
     }
 
     peek() {
-        return this.items[this.items.length - 1];
+        return this.items[0];
     }
 
     isEmpty() {
@@ -26,76 +26,80 @@ class Stack {
     }
 }
 
-const stack = new Stack();
+const queue = new Queue();
 
 $(document).ready(function () {
 
-    function displayStack() {
-        $("#stack").empty();
+    function displayQueue() {
+        $("#queue").empty();
 
-        for (let i = stack.items.length - 1; i >= 0; i--) {
+        queue.items.forEach(function (value, index) {
             const block = $("<div>")
-                .addClass("stack-block")
-                .text(stack.items[i]);
+                .addClass("queue-block")
+                .text(value);
 
-            $("#stack").append(block);
-        }
+            if (index === 0) {
+                block.addClass("front-item");
+            }
+
+            if (index === queue.items.length - 1) {
+                block.addClass("rear-item");
+            }
+
+            $("#queue").append(block);
+        });
     }
 
-    $("#pushBtn").click(function () {
-        const value = $("#stackInput").val().trim();
+    $("#enqueueBtn").click(function () {
+        const value = $("#queueInput").val().trim();
 
         if (value === "") {
             $("#message").text("Please enter a value.");
             return;
         }
 
-        stack.push(value);
-        displayStack();
+        queue.enqueue(value);
+        displayQueue();
 
-        $("#message").text("Pushed: " + value);
-        $("#stackInput").val("");
+        $("#message").text("Enqueued: " + value);
+        $("#queueInput").val("");
     });
 
-    $("#popBtn").click(function () {
-        if (stack.isEmpty()) {
-            $("#message").text("Stack is empty. Nothing to pop.");
+    $("#dequeueBtn").click(function () {
+        if (queue.isEmpty()) {
+            $("#message").text("Queue is empty. Nothing to dequeue.");
             return;
         }
 
-        const removed = stack.pop();
+        const removed = queue.dequeue();
 
-        const block = $("<div>")
-            .addClass("deleted-block")
-            .text(removed);
+        $("#deleted").prepend(
+            $("<div>").addClass("deleted-block").text(removed)
+        );
 
-        $("#deleted").prepend(block);
-
-        displayStack();
-        $("#message").text("Popped: " + removed);
+        displayQueue();
+        $("#message").text("Dequeued: " + removed);
     });
 
     $("#peekBtn").click(function () {
-        if (stack.isEmpty()) {
-            $("#message").text("Stack is empty. Nothing to peek.");
+        if (queue.isEmpty()) {
+            $("#message").text("Queue is empty. Nothing to peek.");
             return;
         }
 
-        displayStack();
+        displayQueue();
+        $("#queue .queue-block").first().addClass("peeked");
 
-        $("#stack .stack-block").first().addClass("peeked");
-
-        $("#message").text("Top value: " + stack.peek());
+        $("#message").text("Front value: " + queue.peek());
     });
 
     $("#clearBtn").click(function () {
-        stack.clear();
+        queue.clear();
 
-        $("#stack").empty();
+        $("#queue").empty();
         $("#deleted").empty();
-
-        $("#message").text("Stack has been cleared.");
-        $("#stackInput").val("");
+        $("#message").text("Queue has been cleared.");
+        $("#queueInput").val("");
     });
 
 });
