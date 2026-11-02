@@ -1,101 +1,76 @@
-"use strict";
-
-class Stack {
-    constructor() {
-        this.items = [];
-    }
-
-    push(value) {
-        this.items.push(value);
-    }
-
-    pop() {
-        return this.items.pop();
-    }
-
-    peek() {
-        return this.items[this.items.length - 1];
-    }
-
-    isEmpty() {
-        return this.items.length === 0;
-    }
-
-    clear() {
-        this.items = [];
-    }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
 }
 
-const stack = new Stack();
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
 
-$(document).ready(function () {
+input {
+    padding: 10px;
+    margin: 5px;
+}
 
-    function displayStack() {
-        $("#stack").empty();
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
 
-        for (let i = stack.items.length - 1; i >= 0; i--) {
-            const block = $("<div>")
-                .addClass("stack-block")
-                .text(stack.items[i]);
+#queue {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 70px;
+    padding: 12px;
+    border: 2px dashed #aaa;
+    border-radius: 5px;
+}
 
-            $("#stack").append(block);
-        }
-    }
+.queue-block {
+    background: #495579;
+    color: white;
+    min-width: 75px;
+    padding: 15px;
+    border-radius: 5px;
+}
 
-    $("#pushBtn").click(function () {
-        const value = $("#stackInput").val().trim();
+.queue-block.front-item {
+    border: 3px solid green;
+}
 
-        if (value === "") {
-            $("#message").text("Please enter a value.");
-            return;
-        }
+.queue-block.rear-item {
+    border: 3px solid blue;
+}
 
-        stack.push(value);
-        displayStack();
+.queue-block.peeked {
+    background: #e0a800;
+    color: black;
+}
 
-        $("#message").text("Pushed: " + value);
-        $("#stackInput").val("");
-    });
+.deleted-block {
+    display: inline-block;
+    background: #dc3545;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
 
-    $("#popBtn").click(function () {
-        if (stack.isEmpty()) {
-            $("#message").text("Stack is empty. Nothing to pop.");
-            return;
-        }
+#message {
+    margin: 15px;
+    font-weight: bold;
+}
 
-        const removed = stack.pop();
-
-        const block = $("<div>")
-            .addClass("deleted-block")
-            .text(removed);
-
-        $("#deleted").prepend(block);
-
-        displayStack();
-        $("#message").text("Popped: " + removed);
-    });
-
-    $("#peekBtn").click(function () {
-        if (stack.isEmpty()) {
-            $("#message").text("Stack is empty. Nothing to peek.");
-            return;
-        }
-
-        displayStack();
-
-        $("#stack .stack-block").first().addClass("peeked");
-
-        $("#message").text("Top value: " + stack.peek());
-    });
-
-    $("#clearBtn").click(function () {
-        stack.clear();
-
-        $("#stack").empty();
-        $("#deleted").empty();
-
-        $("#message").text("Stack has been cleared.");
-        $("#stackInput").val("");
-    });
-
-});
+    
