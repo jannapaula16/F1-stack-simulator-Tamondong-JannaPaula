@@ -1,0 +1,111 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #495579;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    color: #263159;
+}
+
+h2 {
+    color: #495579;
+    margin-top: 25px;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+input {
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 16px;
+    margin: 4px;
+    border: none;
+    border-radius: 5px;
+    background: #263159;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #495579;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    min-height: 50px;
+    padding: 10px;
+    border: 2px dashed #aaa;
+    border-radius: 5px;
+}
+
+.stack-block {
+    background: #495579;
+    color: white;
+    width: 150px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.stack-block.peeked {
+    background: #e0a800;
+    color: black;
+    border: 2px solid #333;
+}
+
+.deleted {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    min-height: 50px;
+    padding: 10px;
+}
+
+.deleted-block {
+    background: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+
+#message {
+    color: #263159;
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        padding: 10px;
+    }
+}
