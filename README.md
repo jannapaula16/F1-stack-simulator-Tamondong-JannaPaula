@@ -10,5 +10,7 @@ https://github.com/Jackson-Soriano/e26_temp
 
 Activity Description:
 This activity introduces the F1 Stack Simulator. It allows students to explore HTML, CSS, Bootstrap, JavaScript, and jQuery by examining the starter files and observing the interface before making coding changes.
-
+# Stack Simulator 
 Stack Simulator completed with Push, Pop, Peek, and Clear operations.
+# queue simulator 
+Queue Simulator implemented using Enqueue, Dequeue, Peek, and Clear operations.
